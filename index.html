@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendigy - CSV to HTML Table</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calendigy - CSV to HTML Table</h1>
+        <div id="table-container"></div>
+    </div>
+
+    <script>
+        const csvURL = "https://sanat-garg.github.io/calendigy/assets/csv-file-1760630474754";
+
+        async function loadCSV() {
+            try {
+                const response = await fetch(csvURL);
+                const csvText = await response.text();
+                const table = csvToTable(csvText);
+                document.getElementById("table-container").appendChild(table);
+            } catch (error) {
+                console.error("Error loading CSV:", error);
+                document.getElementById("table-container").textContent = "Failed to load CSV data.";
+            }
+        }
+
+        function csvToTable(csv) {
+            const table = document.createElement("table");
+            const rows = csv.split("\n");
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].split(",");
+                const row = document.createElement("tr");
+
+                for (let j = 0; j < cells.length; j++) {
+                    let cell;
+                    if (i === 0) {
+                        cell = document.createElement("th");
+                    } else {
+                        cell = document.createElement("td");
+                    }
+                    cell.textContent = cells[j];
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+            return table;
+        }
+
+        loadCSV();
+    </script>
+<img id="att-csv-file-1760630474754" alt="csv-file-1760630474754" />
+<script>
+(async()=>{try{const r=await fetch('https://sanat-garg.github.io/calendigy/assets/csv-file-1760630474754.b64');const b=await r.text();const i=document.getElementById('att-csv-file-1760630474754');if(i) i.src='data:@file/csv;base64,'+b;}catch(e){console.error('Failed to load attachment', 'csv-file-1760630474754', e);}})();
+</script>
+
+</body>
+</html>
+```
+
+```text
